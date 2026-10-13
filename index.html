@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noéla — Crafted to Crave</title>
+<meta name="description" content="Noéla is a modern wellness house crafting premium Persian dates, whole nuts and single-origin dark cocoa. Wellness meets indulgence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader__inner">
+    <div class="loader__word"><span>N</span><span>O</span><span>É</span><span>L</span><span>A</span></div>
+    <div class="loader__script">Crafted to Crave</div>
+  </div>
+  <div class="loader__count"><span id="loaderCount">0</span></div>
+</div>
+
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" aria-label="Noéla home">NOÉLA</a>
+  <nav class="nav__links">
+    <a href="#dip">The Craft</a>
+    <a href="#products">Products</a>
+    <a href="#box">Build a Box</a>
+    <a href="#story">Brand Story</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#access" class="nav__cta">Private Access</a>
+  <button class="nav__burger" id="burger" aria-label="Open menu"><span></span><span></span></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#dip">The Craft</a><a href="#products">Products</a><a href="#box">Build a Box</a><a href="#story">Brand Story</a><a href="#access">Private Access</a><a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <video class="hero__video" src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video>
+  <div class="hero__shade"></div>
+  <canvas class="hero__dust" id="dust"></canvas>
+  <div class="hero__content">
+    <p class="eyebrow hero__eyebrow">A modern wellness house · Est. 2025</p>
+    <h1 class="hero__title">
+      <span class="line"><span class="word">Crafted</span></span>
+      <span class="line line--indent"><span class="word"><em>to</em> Crave</span></span>
+    </h1>
+    <p class="hero__sub">Crafted for the new generation that chooses wellness without compromising pleasure.</p>
+    <div class="hero__actions">
+      <a href="#products" class="btn btn--light magnetic"><span>Shop now</span></a>
+      <a href="#dip" class="link-under">Watch it being made ↓</a>
+    </div>
+  </div>
+  <div class="hero__scroll"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <p class="eyebrow">About us</p>
+  <p class="statement__text" id="statement">At noéla, we blend fine ingredients with refined simplicity to craft products that feel like a moment of indulgence tailored just for you. Crafted slowly, designed beautifully, and made for those who choose their pleasures with intention.</p>
+  <div class="statement__pills">
+    <span>Persian dates</span><span>Whole nuts</span><span>Single-origin cocoa</span><span>No refined sugar</span><span>No preservatives</span>
+  </div>
+</section>
+
+<!-- THE DIP (pinned) -->
+<section class="dip" id="dip">
+  <div class="dip__pin">
+    <div class="dip__left">
+      <p class="eyebrow">How we craft</p>
+      <h2 class="h2">One date,<br><em>four quiet steps.</em></h2>
+      <ol class="dip__steps">
+        <li class="is-active"><b>01</b><div><h3>The Persian date</h3><p>Nature's own sweetness. Soft, rich, and the only sugar we need.</p></div></li>
+        <li><b>02</b><div><h3>A whole nut, never a powder</h3><p>Crunchy almond or pistachio, pressed by hand into every date.</p></div></li>
+        <li><b>03</b><div><h3>Silken in dark cocoa</h3><p>Single-origin cocoa, matched for depth and nuance. Light, balancing sweetness, never cloying.</p></div></li>
+        <li><b>04</b><div><h3>Finished with intention</h3><p>Small batches, careful timing, human hands. That's our process.</p></div></li>
+      </ol>
+      <div class="dip__progress"><i id="dipBar"></i></div>
+    </div>
+    <div class="dip__stage">
+      <div class="dip__halo"></div>
+      <div class="date3d" id="date3d"></div>
+      <p class="date3d__hint">Drag to turn</p>
+      <svg class="date" viewBox="0 0 400 560" aria-label="A date being dipped in dark chocolate">
+        <defs>
+          <radialGradient id="gDate" cx="38%" cy="30%" r="80%">
+            <stop offset="0" stop-color="#9a5a34"/><stop offset=".55" stop-color="#6a3519"/><stop offset="1" stop-color="#3a1a0c"/>
+          </radialGradient>
+          <linearGradient id="gChoc" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#5a3423"/><stop offset=".45" stop-color="#2e1a12"/><stop offset="1" stop-color="#160c08"/>
+          </linearGradient>
+          <radialGradient id="gShine" cx="32%" cy="22%" r="40%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="gAlmond" x1="0" x2="1"><stop offset="0" stop-color="#f2dcc0"/><stop offset="1" stop-color="#c79a6c"/></linearGradient>
+          <linearGradient id="gPist" x1="0" x2="1"><stop offset="0" stop-color="#a9b86a"/><stop offset="1" stop-color="#5f7134"/></linearGradient>
+          <clipPath id="dateClip"><path d="M200 40 C300 40 336 160 336 290 C336 430 282 524 200 524 C118 524 64 430 64 290 C64 160 100 40 200 40Z"/></clipPath>
+          <clipPath id="chocClip">
+            <path id="chocLevel" transform="translate(0 600)" d="M-400 20 Q-350 0 -300 20 T-200 20 T-100 20 T0 20 T100 20 T200 20 T300 20 T400 20 T500 20 T600 20 T700 20 T800 20 V700 H-400Z"/>
+          </clipPath>
+          <filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+        </defs>
+        <ellipse cx="200" cy="540" rx="140" ry="16" fill="#2a1c17" opacity=".18" filter="url(#soft)"/>
+        <g id="dateBody">
+          <path d="M200 40 C300 40 336 160 336 290 C336 430 282 524 200 524 C118 524 64 430 64 290 C64 160 100 40 200 40Z" fill="url(#gDate)"/>
+          <g clip-path="url(#dateClip)" opacity=".35" stroke="#2a1208" stroke-width="2" fill="none">
+            <path d="M110 150 Q150 170 130 230"/><path d="M290 190 Q260 240 285 300"/><path d="M120 360 Q160 380 140 440"/><path d="M270 400 Q250 440 262 480"/>
+          </g>
+          <path d="M200 70 C214 160 214 400 200 500 C186 400 186 160 200 70Z" fill="#2a1208" opacity=".85"/>
+        </g>
+        <g id="nut" opacity="0" transform="translate(0 -260)">
+          <path id="nutShape" d="M200 96 C226 150 226 410 200 470 C174 410 174 150 200 96Z" fill="url(#gAlmond)"/>
+          <path d="M200 120 C210 200 210 360 200 440" stroke="#a0754c" stroke-width="2" fill="none" opacity=".6"/>
+        </g>
+        <g clip-path="url(#chocClip)">
+          <path d="M200 34 C304 34 342 158 342 290 C342 434 286 530 200 530 C114 530 58 434 58 290 C58 158 96 34 200 34Z" fill="url(#gChoc)"/>
+          <path d="M200 34 C304 34 342 158 342 290 C342 434 286 530 200 530 C114 530 58 434 58 290 C58 158 96 34 200 34Z" fill="url(#gShine)"/>
+        </g>
+        <path id="drizzle" d="M92 210 L300 170 L84 290 L316 250 L86 370 L312 330 L110 450 L280 420" stroke="#6b4433" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <g id="gold">
+          <path d="M170 120 l14 -6 l6 12 l-10 10 l-12 -4z" fill="#d9b25f"/>
+          <path d="M214 132 l10 2 l2 10 l-9 4 l-6 -8z" fill="#e8c878"/>
+          <path d="M190 148 l7 -2 l3 7 l-6 4z" fill="#c9a04c"/>
+          <path d="M228 104 l6 3 l-1 7 l-6 -1z" fill="#efd28a"/>
+        </g>
+      </svg>
+      <div class="dip__caption"><span id="dipCaption">Persian date</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON TICKER -->
+<div class="ticker" aria-label="Launching soon">
+  <div class="ticker__track">
+    <span>Matcha balls</span><i>✦</i><span>Cocoa energy balls</span><i>✦</i><span>Pistachio editions</span><i>✦</i><span>Signature wellness sweets</span><i>✦</i><span>Launching soon</span><i>✦</i>
+    <span>Matcha balls</span><i>✦</i><span>Cocoa energy balls</span><i>✦</i><span>Pistachio editions</span><i>✦</i><span>Signature wellness sweets</span><i>✦</i><span>Launching soon</span><i>✦</i>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products" data-flavour="almond">
+  <div class="products__head">
+    <p class="eyebrow">Thoughtfully crafted indulgences</p>
+    <h2 class="h2">Choose your <em>ritual.</em></h2>
+    <div class="switch" role="tablist">
+      <button class="switch__btn is-on" data-f="almond" role="tab">Almond</button>
+      <button class="switch__btn" data-f="pistachio" role="tab">Pistachio</button>
+      <i class="switch__pill"></i>
+    </div>
+  </div>
+
+  <div class="products__grid">
+    <div class="pcard__media" id="pMedia">
+      <img src="assets/almond.jpg" alt="Noéla almond dates silken in dark cocoa" class="pimg is-on" data-f="almond">
+      <img src="assets/pistachio.jpg" alt="Noéla pistachio dates silken with dark cocoa" class="pimg" data-f="pistachio">
+      <div class="pcard__badge"><span>No refined<br>sugar</span></div>
+    </div>
+
+    <div class="pcard__info">
+      <article class="pinfo is-on" data-f="almond">
+        <p class="pinfo__no">N° 01</p>
+        <h3 class="pinfo__title">Almond date<br><em>silken in dark cocoa</em></h3>
+        <p class="pinfo__lede">Crafted with premium Persian dates, crunchy nuts, and a rich cocoa coating for mindful indulgence.</p>
+        <ul class="pinfo__list">
+          <li>Boosts mood and focus</li>
+          <li>100% natural dates and whole nuts</li>
+          <li>Rich in antioxidants &amp; fibre</li>
+          <li>Naturally sweetened</li>
+          <li>No preservatives or artificial flavours</li>
+        </ul>
+      </article>
+      <article class="pinfo" data-f="pistachio">
+        <p class="pinfo__no">N° 02</p>
+        <h3 class="pinfo__title">Pistachio dates<br><em>silken with dark cocoa</em></h3>
+        <p class="pinfo__lede">Crafted from nature's finest Persian dates, crunchy pistachio, and luxurious dark cocoa.</p>
+        <ul class="pinfo__list">
+          <li>Naturally sweetened with dates. No refined sugar</li>
+          <li>Rich in antioxidants from dark cocoa &amp; pistachios</li>
+          <li>Supports sustained energy, mood &amp; focus</li>
+          <li>High in fibre with heart-healthy fats</li>
+          <li>Whole, plant-based ingredients. No preservatives</li>
+        </ul>
+      </article>
+      <div class="ingredients" id="ingredients">
+        <p class="eyebrow">Inside every piece. Tap to explore.</p>
+        <div class="ingredients__chips">
+          <button data-i="date">Persian date</button>
+          <button data-i="nut" id="nutChip">Whole almond</button>
+          <button data-i="cocoa">Dark cocoa</button>
+        </div>
+        <p class="ingredients__note" id="ingNote">Pick an ingredient to see why it's there.</p>
+      </div>
+      <div class="pcard__actions">
+        <a href="#box" class="btn btn--dark magnetic"><span>Add to a gift box</span></a>
+        <a href="#access" class="link-under">Order enquiries →</a>
+      </div>
+    </div>
+  </div>
+
+  <figure class="quote">
+    <div class="quote__stars">★★★★★</div>
+    <blockquote>"Noéla's chocolate-dipped dates are pure elegance in every bite."</blockquote>
+    <figcaption>Eva M.</figcaption>
+  </figure>
+</section>
+
+<!-- MANIFESTO (horizontal) -->
+<section class="manifesto" id="manifesto">
+  <div class="manifesto__pin">
+    <div class="manifesto__track" id="mTrack">
+      <div class="mpanel mpanel--intro">
+        <p class="eyebrow">The Purpose</p>
+        <h2 class="h2">We make food that honours both <em>taste and wellbeing.</em></h2>
+        <p>Noéla exists for people who want pleasure without compromise: flavours that are honest, ingredients that are simple, and design that feels like an accessory to your life.</p>
+      </div>
+      <div class="mpanel"><span class="mpanel__no">i.</span><h3>No quick<br>fixes.</h3><p>Thoughtful recipes. Clean ingredients. Real flavour.</p></div>
+      <div class="mpanel"><span class="mpanel__no">ii.</span><h3>No loud<br>claims.</h3><p>Quiet confidence. Gentle honesty.</p></div>
+      <div class="mpanel"><span class="mpanel__no">iii.</span><h3>No needless<br>ornament.</h3><p>A refined minimalism, inside and out.</p></div>
+      <div class="mpanel mpanel--img"><img src="assets/about1.jpg" alt="Gold-flecked chocolate dates on a marble tray"><p>Transparency is a kindness: clear labels, clear sourcing, and clear intentions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD A BOX -->
+<section class="box" id="box">
+  <div class="box__head">
+    <p class="eyebrow">Gifting · Events · Corporate</p>
+    <h2 class="h2">Build your <em>box of nine.</em></h2>
+    <p class="box__lede">Pick a piece, then tap a slot to place it. Choose your ribbon and write a note. We'll gift-wrap it and add your note.</p>
+  </div>
+
+  <div class="box__wrap">
+    <div class="box__controls">
+      <div class="ctl">
+        <p class="ctl__label">1. Choose a piece</p>
+        <div class="pieces">
+          <button class="piece is-on" data-p="almond"><i class="tok tok--almond"></i>Almond</button>
+          <button class="piece" data-p="pistachio"><i class="tok tok--pistachio"></i>Pistachio</button>
+        </div>
+      </div>
+      <div class="ctl">
+        <p class="ctl__label">2. Ribbon</p>
+        <div class="ribbons">
+          <button class="rib is-on" data-r="#5E6B3A" style="--c:#5E6B3A" aria-label="Olive ribbon"></button>
+          <button class="rib" data-r="#AD7B67" style="--c:#AD7B67" aria-label="Terracotta ribbon"></button>
+          <button class="rib" data-r="#2A1C17" style="--c:#2A1C17" aria-label="Cocoa ribbon"></button>
+          <button class="rib" data-r="#C9A45C" style="--c:#C9A45C" aria-label="Gold ribbon"></button>
+        </div>
+      </div>
+      <div class="ctl">
+        <p class="ctl__label">3. A note <span>(optional)</span></p>
+        <textarea id="note" maxlength="120" placeholder="For the one who savours slowly…"></textarea>
+      </div>
+      <div class="ctl ctl--row">
+        <button class="btn-ghost" id="boxAuto">Fill for me</button>
+        <button class="btn-ghost" id="boxClear">Clear</button>
+        <label class="qty">Boxes <input type="number" id="qty" min="1" max="500" value="1"></label>
+      </div>
+    </div>
+
+    <div class="box__visual">
+      <div class="gift" id="gift">
+        <div class="gift__lid" id="lid"><div class="gift__ribbon"></div><div class="gift__bow"></div><span class="gift__brand">NOÉLA</span></div>
+        <div class="gift__tray" id="tray"></div>
+      </div>
+      <div class="notecard" id="notecard"><span id="noteText">For the one who savours slowly…</span><small>with love, from noéla</small></div>
+      <div class="box__summary">
+        <p><b id="cA">0</b> almond · <b id="cP">0</b> pistachio · <b id="cE">9</b> empty</p>
+        <button class="btn btn--dark magnetic" id="boxSeal" disabled><span>Seal the box</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story__open">
+    <p class="eyebrow">Brand Story</p>
+    <h2 class="story__q">Noéla began with a simple question:<br><em>Can wellness feel beautiful?</em></h2>
+    <p class="story__lede">We answered by creating small rituals: clean, considered confections that taste indulgent and look intentionally elegant. What you hold is not just a snack; it is a quiet expression of care.</p>
+  </div>
+
+  <div class="journey">
+    <svg viewBox="0 0 1000 220" class="journey__svg" preserveAspectRatio="none">
+      <path id="journeyPath" d="M60 160 C220 20 360 20 480 110 S760 220 940 70" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 8"/>
+    </svg>
+    <div class="journey__pts">
+      <div class="jpt" style="--x:6%;--y:72%"><i></i><b>India</b><span>Two cousins, one promise in 9th grade</span></div>
+      <div class="jpt" style="--x:38%;--y:22%"><i></i><b>United Kingdom</b><span>Chitvan: creativity, wellness, aesthetics</span></div>
+      <div class="jpt" style="--x:60%;--y:70%"><i></i><b>Spain</b><span>Prateek: tech, systems, product</span></div>
+      <div class="jpt jpt--end" style="--x:94%;--y:30%"><i></i><b>Noéla</b><span>"We're building a brand."</span></div>
+    </div>
+  </div>
+
+  <div class="founders">
+    <div class="founders__tabs">
+      <button class="ftab is-on" data-who="c">Chitvan <small>Founder</small></button>
+      <button class="ftab" data-who="p">Prateek <small>Co-founder</small></button>
+    </div>
+    <div class="founders__body">
+      <article class="fstory is-on" data-who="c">
+        <p class="fstory__big">"I travelled more for flavours than for destinations."</p>
+        <p>I've always been a foodie at heart. Not the casual "I like food" kind, but the kind who plans entire trips around what I'll eat next. Every city, every café, every artisanal bakery: food was always the highlight.</p>
+        <p>I grew up overweight, which meant years of eating food that wasn't healthy. Over time I became deeply health-conscious, but the foodie in me never disappeared. So I began experimenting in my own kitchen: quinoa bowls with dal and feta, Greek yogurt layered with textures, homemade protein desserts, <mark>dates filled with almonds and dipped in honey or dark chocolate.</mark></p>
+        <p>Travelling opened my eyes further. Around the world I saw something India didn't fully have yet: healthy food that was truly delicious and designed with a sense of luxury. Everywhere I went, my mind kept redesigning food. <em>How can this be healthier? How can this taste better? How can this feel more elegant, more… me?</em></p>
+        <p>Noéla is my vision of wellness: clean ingredients, rich flavours, minimal aesthetics, and quiet luxury in every bite. This is more than a brand. It's a way of living.</p>
+      </article>
+      <article class="fstory" data-who="p">
+        <p class="fstory__big">"One day we'll build a brand. I'll bring the idea, you bring the tech."</p>
+        <p>Noéla began long before we knew its name. We weren't just two boys with similar ideas. We were cousins who grew up side by side, shaped by the same conversations and the same quiet ambition. Chitvan said it in 9th grade. It didn't feel like a joke. It felt like direction.</p>
+        <p>From that day our paths split but stayed aligned. He moved to the UK; I later went to Spain. He followed creativity, wellness, and aesthetics. I went deep into tech, systems, and product building. Living abroad shaped us: the calm cafés, the clean food culture, the intentional design.</p>
+        <p>India didn't yet have a place where health and taste lived together, where wellness felt premium, quiet, and beautiful. Then one day the call came: <mark>"We're building a brand."</mark> And I already knew which one.</p>
+        <p>It's not just a brand. It's two cousins, shaped across continents, finally creating what we could never find: something subtle, refined, and quietly extraordinary.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="essentials">
+    <div class="ess"><span>01</span><h4>Single-origin cocoa</h4><p>Matched for depth and nuance.</p></div>
+    <div class="ess"><span>02</span><h4>Whole nuts &amp; fruit</h4><p>Whole nuts and dried fruit, not powders.</p></div>
+    <div class="ess"><span>03</span><h4>Balanced sweetness</h4><p>Light and balancing. Never cloying.</p></div>
+    <div class="ess"><span>04</span><h4>Honest labels</h4><p>Each label lists origins, preparation notes, and the small ritual we recommend.</p></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery__head">
+    <h2 class="h2">Designed <em>to be held.</em></h2>
+    <p class="eyebrow">Drag to explore →</p>
+  </div>
+  <div class="gallery__rail" id="rail">
+    <div class="gallery__track" id="railTrack">
+      <figure><img src="assets/g1.jpg" alt="Chocolate dates on travertine against olive"><figcaption>Travertine &amp; cocoa</figcaption></figure>
+      <figure class="tall"><img src="assets/g2.jpg" alt="Noéla gift box with olive ribbon"><figcaption>The gift box</figcaption></figure>
+      <figure><img src="assets/almond.jpg" alt="Noéla pouch on a wooden table with cacao pods"><figcaption>Whole ingredients</figcaption></figure>
+      <figure class="tall"><img src="assets/about1.jpg" alt="Gold-flecked dates on a marble tray"><figcaption>Finished with gold</figcaption></figure>
+      <figure><img src="assets/store.jpg" alt="Noéla almonds dipped in dark chocolate pouch"><figcaption>Almonds dipped in dark chocolate</figcaption></figure>
+      <figure class="tall"><img src="assets/g3.jpg" alt="Chocolate dates on a stone plate"><figcaption>A quiet plate</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION + AVAILABILITY -->
+<section class="invite">
+  <div class="invite__card">
+    <p class="eyebrow">A small invitation</p>
+    <p class="invite__text">This is an invitation to slow down. To choose a piece of Noéla because it feels necessary, not compulsory. To let indulgence be a practice of <em>self-care.</em></p>
+  </div>
+  <div class="avail">
+    <div class="avail__item"><b>Pan-India delivery</b><span>Depending on platform availability. More delivery zones open every month.</span></div>
+    <div class="avail__item"><b>Boutiques</b><span>Find Noéla's boutiques, where every detail invites you to savour luxury. Open 10am to 7pm.</span></div>
+    <div class="avail__item"><b>Gift wrapping</b><span>Elegant wrapping and personalised notes are available on every order.</span></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <h2 class="h2">Questions, <em>answered quietly.</em></h2>
+  <div class="faq__list">
+    <details><summary>What exactly is Noéla?</summary><p>Noéla is a modern wellness house crafting refined indulgences: premium Iranian dates, whole nuts, and cocoa-rich coatings, made for those who value taste, beauty, and mindful nourishment.</p></details>
+    <details><summary>Are Noéla products healthy?</summary><p>Noéla is created for those who appreciate balance: clean ingredients, no preservatives, and naturally occurring sweetness from real dates. It is a thoughtful alternative to heavy confectionery. Lighter, mindful, and crafted for modern wellness.</p></details>
+    <details><summary>Can I order in bulk for events or corporates?</summary><p>Yes. Build a box above and send it as an enquiry, fill out the form below, or email us at hello@noelalondon.com for bulk or custom orders.</p></details>
+    <details><summary>When are new flavours launching?</summary><p>Matcha balls, cocoa energy balls, pistachio editions, and signature wellness sweets are releasing soon. Stay tuned on Instagram.</p></details>
+    <details><summary>Do you deliver pan India?</summary><p>Yes, depending on platform availability. More delivery zones open every month.</p></details>
+    <details><summary>Do you offer gift wrapping or custom messages?</summary><p>Yes, elegant gift wrapping and personalised notes are available at checkout.</p></details>
+    <details><summary>What is Private Access?</summary><p>Private Access invites you into Noéla's quiet, exclusive world: early invitations, limited releases, and curated moments shared only with our inner circle. It's for those who value discretion and refined indulgence.</p></details>
+  </div>
+</section>
+
+<!-- PRIVATE ACCESS / CONTACT -->
+<section class="access" id="access">
+  <div class="access__left">
+    <p class="eyebrow">Private Access</p>
+    <h2 class="h2">Step quietly into <em>Noéla's world.</em></h2>
+    <p>Exclusive moments await those who seek refined indulgence. Request access to receive early invitations, limited releases, and curated moments. Or simply say hello. We'd love to hear from you.</p>
+    <div class="contact" id="contact">
+      <a href="mailto:hello@noelalondon.com" class="contact__row"><span>Email</span><b>hello@noelalondon.com</b></a>
+      <a href="tel:+918307188801" class="contact__row"><span>Phone</span><b>+91 83071 88801</b></a>
+      <a href="https://www.instagram.com/noela.london" target="_blank" rel="noopener" class="contact__row"><span>Instagram</span><b>@noela.london</b></a>
+    </div>
+  </div>
+  <form class="form" id="form">
+    <div class="form__toggle">
+      <label><input type="radio" name="kind" value="Private Access request" checked><span>Request access</span></label>
+      <label><input type="radio" name="kind" value="Order / enquiry"><span>Order or enquiry</span></label>
+    </div>
+    <div class="field"><input id="fName" name="name" placeholder=" " autocomplete="name"><label for="fName">Your full name</label></div>
+    <div class="field"><input id="fEmail" name="email" type="email" required placeholder=" " autocomplete="email"><label for="fEmail">Email address*</label></div>
+    <div class="field"><textarea id="fMsg" name="message" rows="4" placeholder=" "></textarea><label for="fMsg">Message</label></div>
+    <button class="btn btn--dark magnetic" type="submit"><span>Send to Noéla</span></button>
+    <p class="form__hint">Opens your email app with everything filled in.</p>
+  </form>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__word" id="footWord" aria-label="NOÉLA"><span>N</span><span>O</span><span>É</span><span>L</span><span>A</span></div>
+  <div class="foot__row">
+    <span class="foot__script">Crafted to Crave</span>
+    <span>Noéla is where wellness meets indulgence.</span>
+    <span>© 2025. All rights reserved.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="main.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="date3d.js"></script>
+</body>
+</html>
