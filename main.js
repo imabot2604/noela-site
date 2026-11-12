@@ -1,5 +1,5 @@
 (() => {
-  const EMAIL = 'hello@noelalondon.com';
+  const EMAIL = 'hello@noela.in';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const $ = (s, r = document) => r.querySelector(s);
@@ -123,17 +123,17 @@
     loop();
   })();
 
-  /* ---------- statement word reveal ---------- */
-  const st = $('#statement');
-  st.innerHTML = st.textContent.trim().split(/\s+/).map(w => `<span class="w">${w}</span>`).join(' ');
-  if (reduce) gsap.set('.statement__text .w', { opacity: 1 });
-  else gsap.to('.statement__text .w', { opacity: 1, stagger: .05, ease: 'none', scrollTrigger: { trigger: st, start: 'top 80%', end: 'bottom 45%', scrub: true } });
-  gsap.from('.statement__pills span', { y: 20, opacity: 0, stagger: .06, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '.statement__pills', start: 'top 90%' } });
+  /* ---------- section reveals ---------- */
+  gsap.from('.intro__text > *', { y: 30, opacity: 0, stagger: .12, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.intro', start: 'top 75%' } });
+  gsap.from('.pstory__body p', { y: 30, opacity: 0, stagger: .18, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.pstory', start: 'top 70%' } });
+  gsap.from('.about__p', { y: 40, opacity: 0, stagger: .15, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.about__cols', start: 'top 85%' } });
+  gsap.from('.gifting__lines p', { y: 24, opacity: 0, stagger: .2, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.gifting__lines', start: 'top 85%' } });
+  gsap.from('.dip__close', { y: 30, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.dip__close', start: 'top 90%' } });
 
   /* ---------- the dip ---------- */
   (() => {
     const steps = $$('.dip__steps li'), cap = $('#dipCaption'), bar = $('#dipBar');
-    const caps = ['Persian date', 'A whole nut', 'Dark cocoa', 'Noéla'];
+    const caps = ['Selected', 'Filled', 'Enrobed', 'Packed'];
     const level = $('#chocLevel'), nut = $('#nut');
     const s = window.__dipState = { nutY: -260, nutO: 0, choc: 600, drizzle: 1600, gold: 0 };
     const render = () => {
@@ -167,61 +167,23 @@
 
   /* ---------- products ---------- */
   (() => {
-    const sec = $('#products'), btns = $$('.switch__btn'), pill = $('.switch__pill');
-    const notes = {
-      date: 'Premium Persian dates: nature\'s own sweetness and fibre. The only sugar we need.',
-      nut: { almond: 'Whole almonds, never powders. A real crunch in every bite.', pistachio: 'Crunchy pistachio for heart-healthy fats and a soft, green richness.' },
-      cocoa: 'Single-origin dark cocoa, rich in antioxidants and matched for depth and nuance.'
-    };
-    let flav = 'almond';
-    const placePill = () => { const on = $('.switch__btn.is-on'); pill.style.width = on.offsetWidth + 'px'; pill.style.transform = `translateX(${on.offsetLeft - 5}px)`; };
-    placePill(); addEventListener('resize', placePill); document.fonts?.ready.then(placePill);
-    const set = f => {
-      if (f === flav) return; flav = f;
-      sec.dataset.flavour = f;
-      btns.forEach(b => b.classList.toggle('is-on', b.dataset.f === f)); placePill();
-      $$('.pimg').forEach(i => i.classList.toggle('is-on', i.dataset.f === f));
-      $$('.pinfo').forEach(a => a.classList.toggle('is-on', a.dataset.f === f));
-      gsap.from('.pinfo.is-on > *, .pinfo.is-on li', { y: 26, opacity: 0, duration: .8, stagger: .05, ease: 'power3.out' });
-      $('#nutChip').textContent = f === 'almond' ? 'Whole almond' : 'Whole pistachio';
-      const on = $('.ingredients__chips .is-on'); if (on) showNote(on.dataset.i);
-    };
-    btns.forEach(b => b.addEventListener('click', () => set(b.dataset.f)));
-    const showNote = k => {
-      const n = typeof notes[k] === 'string' ? notes[k] : notes[k][flav];
-      gsap.fromTo('#ingNote', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: .5 }); $('#ingNote').textContent = n;
-    };
-    $$('.ingredients__chips button').forEach(b => b.addEventListener('click', () => {
-      $$('.ingredients__chips button').forEach(x => x.classList.toggle('is-on', x === b)); showNote(b.dataset.i);
+    const sec = $('#products');
+    $$('.pcard').forEach(c => c.addEventListener('pointerenter', () => sec.dataset.flavour = c.dataset.f));
+    gsap.from('.pcard', { y: 60, opacity: 0, stagger: .15, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.range', start: 'top 80%' } });
+    const names = { almond: 'Noéla Almond', pistachio: 'Noéla Pistachio' };
+    $$('.js-add').forEach(b => b.addEventListener('click', () => {
+      say(names[b.dataset.f] + ' noted. Opening your email to place the order…');
+      const body = 'Hello Noéla,\n\nI would like to order ' + names[b.dataset.f] + '.\nQuantity: \n\nThank you.';
+      setTimeout(() => location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Order: ' + names[b.dataset.f])}&body=${encodeURIComponent(body)}`, 900);
     }));
-    // tilt
-    const media = $('#pMedia');
-    if (fine && !reduce) {
-      media.addEventListener('pointermove', e => {
-        const r = media.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        gsap.to(media, { rotateY: x * 8, rotateX: -y * 8, transformPerspective: 1000, duration: .6, ease: 'power3' });
-      });
-      media.addEventListener('pointerleave', () => gsap.to(media, { rotateX: 0, rotateY: 0, duration: 1, ease: 'elastic.out(1,.5)' }));
-    }
-    gsap.from('.quote blockquote', { y: 40, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.quote', start: 'top 85%' } });
   })();
-
-  /* ---------- manifesto horizontal ---------- */
-  ScrollTrigger.matchMedia({
-    '(min-width: 901px)': () => {
-      const track = $('#mTrack');
-      const dist = () => track.scrollWidth - innerWidth;
-      const tw = gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '.manifesto', start: 'top top', end: () => '+=' + dist(), pin: '.manifesto__pin', scrub: reduce ? true : .6, invalidateOnRefresh: true } });
-      $$('.mpanel h3').forEach(h => gsap.from(h, { yPercent: 40, opacity: 0, ease: 'power2.out', scrollTrigger: { trigger: h, containerAnimation: tw, start: 'left 90%', end: 'left 55%', scrub: true } }));
-    }
-  });
 
   /* ---------- build a box ---------- */
   (() => {
     const tray = $('#tray'), gift = $('#gift'), seal = $('#boxSeal');
     const slots = Array(9).fill(null);
-    let piece = 'almond', ribbon = '#5E6B3A', sealed = false;
-    const ribbonNames = { '#5E6B3A': 'Olive', '#AD7B67': 'Terracotta', '#2A1C17': 'Cocoa', '#C9A45C': 'Gold' };
+    let piece = 'almond', ribbon = '#384936', sealed = false;
+    const ribbonNames = { '#384936': 'Green', '#523727': 'Chocolate', '#ede6d8': 'Sand' };
     tray.innerHTML = slots.map((_, i) => `<button class="slot" data-i="${i}" aria-label="Slot ${i + 1}"></button>`).join('');
     const els = $$('.slot', tray);
     const refresh = () => {
@@ -248,7 +210,7 @@
     });
     $('#boxClear').addEventListener('click', () => { unseal(); slots.forEach((_, i) => put(i, null)); refresh(); });
     const note = $('#note'), noteText = $('#noteText');
-    note.addEventListener('input', () => noteText.textContent = note.value.trim() || 'For the one who savours slowly…');
+    note.addEventListener('input', () => noteText.textContent = note.value.trim() || 'For the one who knows the difference…');
     $('#lid').addEventListener('click', unseal);
     seal.addEventListener('click', () => {
       if (!sealed) {
@@ -261,7 +223,7 @@
       const a = slots.filter(s => s === 'almond').length;
       const body = [
         'Hello Noéla,', '', 'I would like to order the following gift box:', '',
-        `• Almond dates silken in dark cocoa × ${a}`, `• Pistachio dates silken with dark cocoa × ${9 - a}`,
+        `• Noéla Almond × ${a}`, `• Noéla Pistachio × ${9 - a}`,
         `• Ribbon: ${ribbonNames[ribbon]}`, `• Number of boxes: ${qty}`,
         `• Gift note: ${note.value.trim() || '(none)'}`, '', 'Thank you!'
       ].join('\n');
@@ -270,63 +232,18 @@
     refresh();
   })();
 
-  /* ---------- story ---------- */
-  (() => {
-    const path = $('#journeyPath'), len = path.getTotalLength();
-    gsap.set(path, { strokeDasharray: `${len}`, strokeDashoffset: len });
-    const tl = gsap.timeline({ scrollTrigger: { trigger: '.journey', start: 'top 80%', end: 'bottom 40%', scrub: reduce ? true : 1 } })
-      .to(path, { strokeDashoffset: 0, ease: 'none', duration: 1 });
-    $$('.jpt').forEach((p, i) => tl.to(p, { opacity: 1, duration: .15 }, i * .28));
-    $$('.ftab').forEach(t => t.addEventListener('click', () => {
-      $$('.ftab').forEach(x => x.classList.toggle('is-on', x === t));
-      $$('.fstory').forEach(s => s.classList.toggle('is-on', s.dataset.who === t.dataset.who));
-      gsap.from('.fstory.is-on > *', { y: 24, opacity: 0, stagger: .06, duration: .8, ease: 'power3.out' });
-      ScrollTrigger.refresh();
-    }));
-    gsap.from('.ess', { y: 40, opacity: 0, stagger: .1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.essentials', start: 'top 85%' } });
-  })();
-
-  /* ---------- draggable gallery ---------- */
-  (() => {
-    const rail = $('#rail'), track = $('#railTrack');
-    let x = 0, v = 0, down = false, sx = 0, sy = 0, startX = 0, lastX = 0, lastT = 0, axis = null;
-    const min = () => Math.min(0, rail.clientWidth - track.scrollWidth);
-    const apply = () => gsap.set(track, { x });
-    rail.addEventListener('pointerdown', e => { down = true; axis = null; sx = e.clientX; sy = e.clientY; startX = x; lastX = e.clientX; lastT = performance.now(); v = 0; });
-    addEventListener('pointermove', e => {
-      if (!down) return;
-      if (!axis) { const ax = Math.abs(e.clientX - sx), ay = Math.abs(e.clientY - sy); if (ax + ay < 6) return; axis = ax > ay ? 'x' : 'y'; if (axis === 'x') rail.setPointerCapture?.(e.pointerId); }
-      if (axis !== 'x') return;
-      const now = performance.now(); v = (e.clientX - lastX) / Math.max(1, now - lastT) * 16; lastX = e.clientX; lastT = now;
-      x = startX + (e.clientX - sx); const m = min();
-      if (x > 0) x *= .35; if (x < m) x = m + (x - m) * .35;
-      apply();
-    });
-    addEventListener('pointerup', () => {
-      if (!down) return; down = false;
-      const target = gsap.utils.clamp(min(), 0, x + v * 18);
-      gsap.to({ x }, { x: target, duration: 1.2, ease: 'expo.out', onUpdate() { x = this.targets()[0].x; apply(); } });
-    });
-    // scroll also nudges it
-    if (!reduce) gsap.fromTo(track, { xPercent: 0 }, { xPercent: -6, ease: 'none', scrollTrigger: { trigger: '.gallery', start: 'top bottom', end: 'bottom top', scrub: true } });
-  })();
-
   /* ---------- reveal helpers ---------- */
   $$('.h2').forEach(h => {
-    if (h.closest('.dip, .manifesto')) return;
+    if (h.closest('.dip')) return;
     gsap.from(h, { y: 50, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: h, start: 'top 88%' } });
   });
-  gsap.from('.invite__text', { y: 40, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.invite__card', start: 'top 80%' } });
-  if (!reduce) gsap.fromTo('.invite__card', { clipPath: 'inset(8% 6% 8% 6% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 6px)', ease: 'none', scrollTrigger: { trigger: '.invite__card', start: 'top bottom', end: 'top 30%', scrub: true } });
-
-  /* ---------- form → email ---------- */
+  /* ---------- notify → email ---------- */
   $('#form').addEventListener('submit', e => {
     e.preventDefault();
-    const f = e.target, kind = f.kind.value, name = f.name.value.trim(), email = f.email.value.trim(), msg = f.message.value.trim();
-    if (!email) { say('Please add your email address.'); f.email.focus(); return; }
-    const body = `${msg || (kind.startsWith('Private') ? "I'd love to join Noéla's inner circle." : 'Hello Noéla,')}\n\n${name ? name + '\n' : ''}${email}`;
-    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(kind + (name ? ' from ' + name : ''))}&body=${encodeURIComponent(body)}`;
-    say('Opening your email app…');
+    const email = e.target.email.value.trim();
+    if (!email) { say('Please add your email address.'); e.target.email.focus(); return; }
+    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Notify me when Noéla launches')}&body=${encodeURIComponent('Please add me to the Noéla list.\n\n' + email)}`;
+    say('No noise. Just Noéla.');
   });
 
   /* ---------- footer wordmark ---------- */
